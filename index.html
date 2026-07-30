@@ -486,7 +486,7 @@
       </div>
       <p class="lede">Este manual explica, paso a paso y con capturas reales del archivo, cómo diligenciar el autodiagnóstico, cómo agregar información nueva (filas, columnas u hojas completas) y cómo lograr que el Dashboard y las gráficas siempre queden actualizados. No necesitas saber Excel: solo seguir el orden.</p>
       <div class="hero-meta">
-        <div><span class="k">Archivo</span><span class="v mono">MIPG_AutoDiagnostico_2025_v1.0_ICETEX.xlsx</span></div>
+        <div><span class="k">Archivo</span><span class="v mono">MIPG_AutoDiagnostico_2025_V2_ENTREGA.xlsx</span></div>
         <div><span class="k">Pestañas</span><span class="v">24, en 4 módulos</span></div>
         <div><span class="k">Regla de oro</span><span class="v">Solo se edita Puntaje, Observaciones y el nombre de la Política. Lo demás son fórmulas.</span></div>
       </div>
@@ -514,7 +514,7 @@
         <div class="module-card">
           <span class="tag">Módulo 2</span>
           <h3>Hojas de captura (Dim1–Dim7)</h3>
-          <p>19 formularios donde se califica cada política. Aquí es donde realmente escribes algo.</p>
+          <p>18 formularios donde se califica cada política. Aquí es donde realmente escribes algo.</p>
           <div class="tabs">Dim1 TH · Dim 1 Integridad · Dim2 DireccyPlan · Dim2 G PresupyGasto · Dim2 CompyContr · Dim3 FortySimpli · Dim3 Gobdigital · Dim3 DefeJuri · Dim3MejoraNorma · Dim3 Servciud · Dim3 RacionalTram · Dim 3 PartiCiudad · Dim4 EvalResul · Dim5 GDocu · Dim5 Transpar · Dim5InformaEstd · Dim6 GConocInnov · Dim7 CntrlInterno</div>
         </div>
         <div class="module-card">
@@ -542,7 +542,7 @@
     <section class="section" id="s-diligenciar">
       <div class="eyebrow-row"><span class="step-badge">02</span><span class="eyebrow">Lo que hace el 90% de los usuarios</span></div>
       <h2 class="section-title">Diligenciar un puntaje</h2>
-      <p class="section-sub">Ejemplo real tomado de la hoja <span class="mono">Dim1 TH</span> (Talento Humano). La estructura es idéntica en las otras 18 hojas de dimensión: solo cambian las preguntas.</p>
+      <p class="section-sub">Ejemplo real tomado de la hoja <span class="mono">Dim1 TH</span> (Talento Humano). La lógica es la misma en las otras 17 hojas de dimensión, pero <strong>ojo</strong>: la letra de columna de Puntaje y Observaciones no siempre es la misma (ver aviso abajo).</p>
 
       <div class="shot-frame">
         <div class="bar"><span></span><span></span><span></span><span class="label">Dim1 TH — Política de Gestión Estratégica de Talento Humano</span></div>
@@ -555,6 +555,12 @@
         <div class="badge edit"><span class="dot"></span>Columna J — Puntaje: SÍ se edita</div>
         <div class="badge opt"><span class="dot"></span>Columna K — Observaciones: opcional</div>
         <div class="badge noedit"><span class="dot"></span>Columnas C, D, E, F, I — fórmulas: NO se deben modificar</div>
+      </div>
+
+      <div class="callout danger">
+        <div class="ico">🚫</div>
+        <div><strong>La letra de columna cambia de hoja en hoja</strong>
+        <p>Verificado contra el archivo actual: en <span class="mono">Dim1 TH</span> y <span class="mono">Dim5 GDocu</span> Puntaje está en <code class="cell">J</code> y Observaciones en <code class="cell">K</code>; en <span class="mono">Dim 1 Integridad</span>, <span class="mono">Dim2 DireccyPlan</span> y la mayoría de las hojas, Puntaje está en <code class="cell">H</code> y Observaciones en <code class="cell">I</code>; en <span class="mono">Dim3 Gobdigital</span> el puntaje se llama "Porcentaje de cumplimiento" y está en <code class="cell">F</code>, sin columna CATEGORÍA; en <span class="mono">Dim6 GConocInnov</span> Puntaje está en <code class="cell">I</code>. Ubica siempre la columna por su encabezado ("Puntaje 0-100"), no por la letra.</p></div>
       </div>
 
       <div style="margin-top:34px;">
@@ -661,7 +667,7 @@
           </div>
           <div class="stepline">
             <div class="num">4</div>
-            <div class="body"><strong>Verifica que el rango de la fórmula creció</strong><p>Haz clic en la celda de CALIFICACIÓN de esa categoría (columna F) y mira la barra de fórmulas. Antes decía por ejemplo <code class="formula">=AVERAGE(J12:J26)</code>; después de insertar una fila en medio debe decir <code class="formula">=AVERAGE(J12:J27)</code>. Si el rango no cambió, la fila quedó fuera del cálculo.</p></div>
+            <div class="body"><strong>Verifica que el rango de la fórmula creció</strong><p>Haz clic en la celda de CALIFICACIÓN de esa categoría (columna F) y mira la barra de fórmulas. Antes decía por ejemplo (fórmula real de la celda F12 en Dim1 TH) <code class="formula">=IF(SUM(J12:J26)=0,"",AVERAGE(J12:J26))</code>; después de insertar una fila en medio debe decir <code class="formula">=IF(SUM(J12:J27)=0,"",AVERAGE(J12:J27))</code>. Si el rango no cambió, la fila quedó fuera del cálculo.</p></div>
           </div>
           <div class="callout danger">
             <div class="ico">🚫</div>
@@ -709,10 +715,14 @@
           </div>
           <div class="stepline">
             <div class="num">5</div>
-            <div class="body"><strong>Conéctala al Dashboard</strong><p>En <span class="mono">Dashboard (2)</span>, agrega una fila nueva en la tabla de resumen y escribe una fórmula que apunte a esa celda, por ejemplo: <code class="formula">='Dim8 NombreCorto'!I8</code>. Usa comillas simples porque el nombre de la hoja tiene espacio.</p></div>
+            <div class="body"><strong>Conéctala al Dashboard</strong><p>En la hoja <span class="mono">Dashboard</span>, las 7 dimensiones actuales ocupan las filas 2 a 8 de las columnas <code class="cell">N</code> (nombre), <code class="cell">O</code> (puntaje) y <code class="cell">P</code> (nivel). Agrega tu dimensión en la fila 9: el nombre en <code class="cell">N9</code> y en <code class="cell">O9</code> la fórmula que trae el puntaje de tu hoja nueva, ej.: <code class="formula">='Dim8 NombreCorto'!I8</code>. Luego amplía <strong>todas</strong> las fórmulas de esa hoja que dicen <code class="formula">...2:...8</code> para que digan <code class="formula">...2:...9</code> (promedio, máximo, mínimo y el ranking) — si no las amplías, tu dimensión queda invisible aunque la fila exista.</p></div>
           </div>
           <div class="stepline">
             <div class="num">6</div>
+            <div class="body"><strong>Conéctala también a "Tablero MIPG (Propuesta)"</strong><p>Este paso se olvida seguido y el tablero simplemente no muestra la dimensión nueva. Esa pestaña <strong>no usa tablas de Excel que se expandan solas</strong> (verificado: no hay ninguna tabla registrada en todo el archivo) — copia a mano los mismos números de Dashboard en las columnas <code class="cell">R</code>, <code class="cell">S</code> y <code class="cell">T</code> (filas 2 a 8). Agrega la fila 9 con <code class="formula">=Dashboard!N9</code>, <code class="formula">=Dashboard!O9</code> y <code class="formula">=Dashboard!P9</code>, y amplía a mano cada fórmula que hoy dice <code class="formula">S2:S8</code> o <code class="formula">$T$2:$T$8</code> (promedio general, máximo, mínimo y conteos por nivel) para que llegue hasta la fila 9. Si además quieres el desglose por categoría de tu dimensión nueva, copia el bloque de fórmulas de una dimensión existente (más abajo en la misma hoja) y apúntalo a las filas de tu hoja nueva — tampoco se genera solo.</p></div>
+          </div>
+          <div class="stepline">
+            <div class="num">7</div>
             <div class="body"><strong>Agrega el acceso directo en INICIO</strong><p>Copia una fila del menú de navegación, cambia el texto y el hipervínculo para que apunte a la nueva pestaña.</p></div>
           </div>
         </div>
@@ -746,12 +756,18 @@
         </div>
         <div class="stepline">
           <div class="num">4</div>
-          <div class="body"><strong>Si el Dashboard usa Tablas Dinámicas</strong><p>Haz clic derecho directamente sobre la tabla dentro del tablero y elige <strong>"Actualizar"</strong>. El atajo del paso 3 no siempre alcanza a las tablas dinámicas.</p></div>
+          <div class="body"><strong>Revisa que no queden fórmulas rotas</strong><p>Este archivo no usa tablas dinámicas: todo el Dashboard son fórmulas normales (<code class="formula">=AVERAGE(...)</code>, <code class="formula">=INDEX/MATCH(...)</code>) y gráficos vinculados a ellas. El atajo del paso 3 sí las recalcula; lo que hay que revisar a mano es que ninguna celda quede en <span class="mono">#REF!</span> — ver el aviso de abajo, porque en <span class="mono">Dashboard (2)</span> ya existen algunas.</p></div>
         </div>
         <div class="stepline">
           <div class="num">5</div>
           <div class="body"><strong>Compara visualmente</strong><p>Revisa que el color de cada dimensión en el Dashboard coincida con el nivel que esperarías según tus puntajes. Si algo se ve "congelado" o en blanco, ve a la Sección 07.</p></div>
         </div>
+      </div>
+
+      <div class="callout danger">
+        <div class="ico">🚫</div>
+        <div><strong>Ya hay 3 fórmulas rotas en "Dashboard (2)" ahora mismo</strong>
+        <p>Verificado en el archivo actual: la fila 7 (columna B) es <code class="formula">=#REF!</code>, la fila 10 apunta a <code class="formula">='Dim6 GConocInnov'!#REF!</code>, y la fila 11 apunta a un archivo externo desconectado, <code class="formula">='[7]Dim3 GobierDigit'!F7</code> (nombre de hoja viejo — la pestaña ya no se llama así, ahora es <span class="mono">Dim3 Gobdigital</span>). Estas tres filas no muestran ningún puntaje real todavía; hay que corregir esas referencias antes de confiar en el promedio general de <span class="mono">Dashboard (2)</span>.</p></div>
       </div>
     </section>
 
