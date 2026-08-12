@@ -311,7 +311,8 @@
     font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--gold); font-weight:600;
   }
   .stepline .body{padding-top:2px;}
-  .stepline .body strong{display:block; margin-bottom:3px; font-size:15px;}
+  .stepline .body > strong{display:block; margin-bottom:3px; font-size:15px;}
+  .stepline .body p strong{display:inline;}
   .stepline .body p{margin:0; font-size:14.5px; color:var(--text-muted);}
 
   code.cell{
@@ -511,6 +512,12 @@
         <div class="badge noedit"><span class="dot"></span>Columnas Componentes, Calificación, Categoría, Actividades de Gestión — fórmulas o texto fijo: NO se deben modificar</div>
       </div>
 
+      <div class="callout info">
+        <div class="ico">✅</div>
+        <div><strong>Buena noticia: ya es uniforme en las 19 hojas</strong>
+        <p>Verificado contra el archivo corregido actual: en <strong>todas</strong> las hojas de dimensión (incluida la nueva <span class="mono">Dim3 SegDigital</span>) Puntaje está siempre en la columna <code class="cell">H</code> y Observaciones siempre en <code class="cell">I</code> — incluso en <span class="mono">Dim3 Gobdigital</span>, que antes tenía una estructura distinta (ahí el campo se llama "Porcentaje de cumplimiento" pero sigue estando en H). Ya no hace falta revisar el encabezado hoja por hoja.</p></div>
+      </div>
+
       <div style="margin-top:34px;">
         <div class="stepline">
           <div class="num">1</div>
@@ -611,7 +618,7 @@
           </div>
           <div class="stepline">
             <div class="num">3</div>
-            <div class="body"><strong>Escribe la nueva actividad de gestión</strong><p>Completa la columna <code class="cell">g</code> con el texto de la nueva pregunta, y deja la columna <code class="cell">J</code> vacía para que el usuario la diligencie.</p></div>
+            <div class="body"><strong>Escribe la nueva actividad de gestión</strong><p>Completa la columna <code class="cell">I</code> (o <code class="cell">G</code> según la hoja) con el texto de la nueva pregunta, y deja la columna <code class="cell">J</code> vacía para que el usuario la diligencie.</p></div>
           </div>
           <div class="stepline">
             <div class="num">4</div>
